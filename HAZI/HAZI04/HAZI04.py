@@ -25,7 +25,7 @@ def csv_to_df(test_data):
     return df
 
 df = csv_to_df("StudentsPerformance.csv")
-df
+
 
 # %%
 '''
@@ -48,7 +48,7 @@ def capitalize_columns(df):
 
     return new_df
 
-capitalize_columns(df)
+#capitalize_columns(df)
 
 
 
@@ -72,7 +72,7 @@ def math_passed_count(df):
             passedcount = passedcount+1
 
     return passedcount
-math_passed_count(df)
+#math_passed_count(df)
 
 # %%
 '''
@@ -90,7 +90,7 @@ def did_pre_course(df):
     subset = new_df[new_df['test preparation course'] == "completed"]
     return subset
 
-did_pre_course(df)
+#did_pre_course(df)
 
 # %%
 '''
@@ -111,7 +111,7 @@ def average_scores(df):
 
     return grouped
 
-average_scores(df)
+#average_scores(df)
 
 # %%
 '''
@@ -138,7 +138,7 @@ def add_age(df):
 
     return new_df
 
-add_age(df)
+#add_age(df)
 
 # %%
 '''
@@ -162,7 +162,7 @@ def female_top_score(df):
 
     return (new_df['math score'][best],new_df["reading score"][best],new_df["writing score"][best])
 
-female_top_score(df)
+#female_top_score(df)
 
 # %%
 '''
@@ -203,7 +203,7 @@ def add_grade(df):
 
     return new_df
 
-add_grade(df)
+#add_grade(df)
 
 # %%
 '''
@@ -235,7 +235,7 @@ def math_bar_plot(df):
 
     return fig
 
-math_bar_plot(df)
+#math_bar_plot(df)
 
 # %%
 ''' 
@@ -262,7 +262,7 @@ def writing_hist(df):
     ax.set_xlabel('Writing Score')
     return fig
 
-writing_hist(df)
+#writing_hist(df)
 
 # %%
 ''' 
@@ -289,6 +289,6 @@ def ethnicity_pie_chart(df):
     
     return fig
 
-ethnicity_pie_chart(df)
+#ethnicity_pie_chart(df)
 
 
