@@ -117,11 +117,12 @@ def plot_population(df):
     countries = new_df['country']
     population = new_df['population']
     ax.bar(countries,population)
+    ax.set_title('Population of Countries')
     ax.set_ylabel('Population (millions)')
     ax.set_xlabel('Country')
     return fig
 
-#plot_population(df)
+#print(plot_population(df))
 
 # %%
 '''
@@ -142,11 +143,12 @@ def plot_area(df):
     fig,ax = plt.subplots()
     countries = new_df['country']
     areas = new_df['area']
+    ax.set_title('Area of Countries')
     ax.pie(areas,labels=countries)
 
    
     return fig
 
-#plot_area(df)
+#print(plot_area(df))
 
 
