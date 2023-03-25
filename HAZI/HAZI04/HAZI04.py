@@ -126,20 +126,20 @@ függvény neve: add_age
 '''
 
 # %%
-import random
+
 
 
 def add_age(df):
     new_df = df.copy()
     new_df['age'] = ''
-    random.seed(42)
+    np.random.seed(42)
     for i in range(len(new_df)):
-        new_df['age'][i] = random.randint(18,66)
+        new_df['age'][i] = np.random.randint(low=18,high=67)
 
 
     return new_df
 
-#add_age(df)
+#print(add_age(csv_to_df('StudentsPerformance.csv')))
 
 # %%
 '''
