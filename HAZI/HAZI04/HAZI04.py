@@ -24,7 +24,7 @@ def csv_to_df(test_data):
     df = pd.read_csv(test_data)
     return df
 
-df = csv_to_df("StudentsPerformance.csv")
+#df = csv_to_df("StudentsPerformance.csv")
 
 
 # %%
@@ -44,11 +44,11 @@ def capitalize_columns(df):
     for column in new_df:
         
         if not ('e' in column):
-           new_df = new_df.rename(columns={column : column.capitalize()})
+           new_df = new_df.rename(columns={column : column.upper()})
 
     return new_df
 
-#capitalize_columns(df)
+#print(capitalize_columns(df))
 
 
 
@@ -111,6 +111,7 @@ def average_scores(df):
 
     return grouped
 
+#print(average_scores(df))
 #average_scores(df)
 
 # %%
