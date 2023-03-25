@@ -232,7 +232,7 @@ def math_bar_plot(df):
     ax.bar(grouped.index,grouped.values)
     ax.set_ylabel('Math Score')
     ax.set_xlabel('Gender')
-
+    ax.set_title('Average Math Score by Gender')
 
     return fig
 
@@ -261,6 +261,7 @@ def writing_hist(df):
     ax.hist(new_df['writing score'])
     ax.set_ylabel('Number of Students')
     ax.set_xlabel('Writing Score')
+    ax.set_title('Distribution of Writing Scores')
     return fig
 
 #writing_hist(df)
@@ -285,7 +286,7 @@ def ethnicity_pie_chart(df):
     new_df = df.copy()
     fig,ax = plt.subplots()
     grouped = new_df.groupby(['race/ethnicity'])['race/ethnicity'].count()
-    
+    ax.set_title('Proportion of Students by Race/Ethnicity')
     ax.pie(grouped,labels=grouped.index,autopct='%1.1f%%')
     
     return fig
