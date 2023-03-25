@@ -112,8 +112,7 @@ függvény neve: plot_population
 # %%
 def plot_population(df):
     new_df = df.copy()
-    fig = plt.figure()
-    ax = fig.add_axes([0,0,1,1])
+    fig,ax = plt.subplots()
     countries = new_df['country']
     population = new_df['population']
     ax.bar(countries,population)
