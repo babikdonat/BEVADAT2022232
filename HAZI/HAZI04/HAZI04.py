@@ -130,11 +130,9 @@ függvény neve: add_age
 
 
 def add_age(df):
-    new_df = df.copy()
-    new_df['age'] = ''
-    np.random.seed(42)
-    for i in range(len(new_df)):
-        new_df['age'][i] = np.random.randint(low=18,high=67)
+    new_df = df.copy()  
+    np.random.seed(42)  
+    new_df['age'] = np.random.randint(18,67,new_df.shape[0])
 
 
     return new_df
@@ -156,14 +154,14 @@ def female_top_score(df):
     new_df = df.copy()
     best = 0
     for i in range(len(new_df)):
-        if new_df['gender'][i] == 'female' and new_df['math score'][best] < new_df['math score'][i] and new_df['reading score'][best] < new_df['reading score'][i] and new_df['writing score'][best] < new_df['writing score'][i]:
+        if new_df['gender'][i] == 'female' and (new_df['math score'][best]+new_df['writing score'][best]+new_df['reading score'][best]) < (new_df['math score'][i] + new_df['writing score'][i] + new_df['reading score'][i]):
             best = i
 
 
 
     return (new_df['math score'][best],new_df["reading score"][best],new_df["writing score"][best])
 
-#female_top_score(df)
+#print(female_top_score(csv_to_df('StudentsPerformance.csv')))
 
 # %%
 '''
@@ -224,8 +222,7 @@ függvény neve: math_bar_plot
 # %%
 def math_bar_plot(df):
     new_df = df.copy()
-    fig = plt.figure()
-    ax = fig.add_axes([0,0,1,1])
+    fig,ax = plt.subplots()
 
     grouped = new_df.groupby('gender')['math score'].mean()
     
@@ -236,7 +233,7 @@ def math_bar_plot(df):
 
     return fig
 
-#math_bar_plot(df)
+#print(math_bar_plot(csv_to_df('StudentsPerformance.csv')))
 
 # %%
 ''' 
@@ -256,15 +253,14 @@ függvény neve: writing_hist
 # %%
 def writing_hist(df):
     new_df = df.copy()
-    fig = plt.figure()
-    ax = fig.add_axes([0,0,1,1])
+    fig,ax = plt.subplots()
     ax.hist(new_df['writing score'])
     ax.set_ylabel('Number of Students')
     ax.set_xlabel('Writing Score')
     ax.set_title('Distribution of Writing Scores')
     return fig
 
-#writing_hist(df)
+#print(writing_hist(csv_to_df('StudentsPerformance.csv')))
 
 # %%
 ''' 
