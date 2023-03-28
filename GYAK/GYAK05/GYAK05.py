@@ -11,7 +11,9 @@ class KNNClassifier:
         self.k = k
         self.test_split_ratio = test_split_ratio
 
-    def k_neighbors(self)->int:
+
+    @property
+    def k_neighbors(self):
         return self.k
 
     def train_set_split(self,features:np.ndarray,labels:np.ndarray)->Tuple[np.ndarray,np.ndarray,np.ndarray,np.ndarray]:
