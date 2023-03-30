@@ -40,9 +40,9 @@ class KNNClassifier:
     def euclidean(self,element_of_x:np.ndarray)->np.ndarray:
         return np.sqrt(np.sum((self.x_train - element_of_x)**2,axis=1))
     
-    def predict(self)->np.ndarray:
+    def predict(self,x_test:np.ndarray)->np.ndarray:
         labels_pred = []
-        for x_test_element in self.x_test:
+        for x_test_element in x_test:
               distances = self.euclidean(x_test_element)
               distances = np.array(sorted(zip(distances,self.y_train)))
 
@@ -57,14 +57,14 @@ class KNNClassifier:
     
     def confusion_matrix(self):
         conf_matrix = confusion_matrix(self.y_test,self.y_preds)
-        sns.heatmap(conf_matrix,annot=True)
+        return conf_matrix
 
 #cucc = KNNClassifier(3,0.2)
 #x,y = cucc.load_csv('iris.csv')
 #cucc.train_set_split(x,y)
-#cucc.predict()
+#cucc.predict(cucc.x_test)
 #print(cucc.accuracy())
-#cucc.confusion_matrix()
+#print(cucc.confusion_matrix())
 
     
 
