@@ -21,7 +21,7 @@ class KNNClassifier:
     @staticmethod
     def load_csv(csv_path:str)->Tuple[pd.DataFrame,pd.DataFrame]:
 
-        df = pd.read_csv(csv_path,header=None)
+        df = pd.read_csv(csv_path)
         df = df.sample(random_state=42,frac=1)  
         x = df.iloc[:,:-1]
         y = df.iloc[:,-1]
@@ -40,32 +40,50 @@ class KNNClassifier:
         self.y_test = y_test
     
     def euclidean(self,element_of_x:pd.DataFrame):
-        return sum((self.x_train - element_of_x)**2)**0.5
+        return ((self.x_train - element_of_x)**2).sum(axis=1)**0.5
     
     def predict(self,x_test:pd.DataFrame):
         labels_pred = []
-        for x_test_element in x_test.iterrows():
+        for index,x_test_element in x_test.iterrows():
               distances = self.euclidean(x_test_element)
               distances = pd.DataFrame(sorted(zip(distances,self.y_train)))
 
-              label_pred = mode(distances.iloc[:self.k,1],keepdims=False).mode()
+              label_pred = mode(distances.iloc[:self.k,1],keepdims=False)
               labels_pred.append(label_pred)
 
         self.y_preds = pd.DataFrame(labels_pred).iloc[:,0]
 
     def accuracy(self)->float:
-        true_positive = (self.y_test == self.y_preds).sum()
+        true_positive = (self.y_test.reset_index(drop=True) == self.y_preds.reset_index(drop=True)).sum()
         return true_positive / len(self.y_test) * 100
     
     def confusion_matrix(self):
         conf_matrix = confusion_matrix(self.y_test,self.y_preds)
         return conf_matrix
 
+    def best_k(self) -> Tuple[int, float]:
+        best_k = 0
+        best_accuracy = 0.0
+        original_k = self.k
+        for i in range(20):
+            self.k = i+1
+            self.predict(self.x_test)
+            current_accuracy = self.accuracy()
+            if (best_accuracy < current_accuracy):
+                best_k = i+1
+                best_accuracy = current_accuracy
+        
+        self.k = original_k
+        
+        return best_k, round(best_accuracy, 2)
+
+
 #cucc = KNNClassifier(3,0.2)
-#x,y = cucc.load_csv('iris.csv')
+#x,y = cucc.load_csv('diabetes.csv')
 #cucc.train_set_split(x,y)
 #cucc.predict(cucc.x_test)
 #print(cucc.accuracy())
 #print(cucc.confusion_matrix())
+#print(cucc.best_k())
 
     
