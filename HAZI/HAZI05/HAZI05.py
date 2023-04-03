@@ -22,7 +22,7 @@ class KNNClassifier:
     def load_csv(csv_path:str)->Tuple[pd.DataFrame,pd.DataFrame]:
 
         df = pd.read_csv(csv_path)
-        df = df.sample(random_state=42,frac=1)  
+        df = df.sample(random_state=42,frac=1).reset_index(drop=True)  
         x = df.iloc[:,:-1]
         y = df.iloc[:,-1]
         return x,y
@@ -78,12 +78,12 @@ class KNNClassifier:
         return best_k, round(best_accuracy, 2)
 
 
-#cucc = KNNClassifier(3,0.2)
-#x,y = cucc.load_csv('diabetes.csv')
-#cucc.train_set_split(x,y)
-#cucc.predict(cucc.x_test)
-#print(cucc.accuracy())
-#print(cucc.confusion_matrix())
-#print(cucc.best_k())
+cucc = KNNClassifier(9,0.2)
+x,y = cucc.load_csv('diabetes.csv')
+cucc.train_set_split(x,y)
+cucc.predict(cucc.x_test)
+print(cucc.accuracy())
+print(cucc.confusion_matrix())
+print(cucc.best_k())
 
     
