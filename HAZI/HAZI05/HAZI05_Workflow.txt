@@ -1,0 +1,23 @@
+Load_csv:
+ Betölti a kapott .csv fájl adatait egy dataframebe, és random megkeveri azt.
+
+train_test_split:
+ A load_csv-ből kapott dataframet felossza tanító és ellenőrző adatokká,hogy tesztelhető legyen a tanításunk pontossága.
+
+euclidean:
+ Euklideszi algoritmus, megvizsgálja egy sor bemeneti paraméteréihez vett távolságot a tanító adatokból(matekos függvény)
+
+predict:
+ A tesztelendő sorokra meghívja a fenti euclidean függvényt, ami visszaadja az összes távolságot egy dataframe vektorban,
+majd a k paraméterünkhöz mérve a k darab sorban leggyakrabban előforduló kimenetelt választja a sorhoz.
+
+accuracy:
+ A predict metódus által visszaadott értékeket összehasonlítjuk a train_test_split test adataival, és visszadjuk százalékban a sikeresség arányát.
+
+confusion_matrix:
+ Egy olyan mátrixot ad vissza, aminek a főtengelyén vannak a true positive(helyesen megtippelt sorok), a többi helyen negatív sorok, ami ha 0 akkor true negative, ha nem 0 ,akkor nem jól tippelt a programunk.
+
+best_k:
+ Visszaad egy Tuple-t, amiben az optimális k érték szerepel(1 és 20 között), és a hozzá tartozó pontosság.
+ 1-20-ig minden k-ra lefuttatja a predict illetve accuracy függvényeket.
+ 
