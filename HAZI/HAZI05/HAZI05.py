@@ -78,12 +78,12 @@ class KNNClassifier:
         return best_k, round(best_accuracy, 2)
 
 
-cucc = KNNClassifier(9,0.2)
-x,y = cucc.load_csv('diabetes.csv')
-cucc.train_set_split(x,y)
-cucc.predict(cucc.x_test)
-print(cucc.accuracy())
-print(cucc.confusion_matrix())
-print(cucc.best_k())
+#cucc = KNNClassifier(9,0.2)
+#x,y = cucc.load_csv('diabetes.csv')
+#cucc.train_set_split(x,y)
+#cucc.predict(cucc.x_test)
+#print(cucc.accuracy())
+#print(cucc.confusion_matrix())
+#print(cucc.best_k())
 
     
