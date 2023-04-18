@@ -31,5 +31,9 @@ class LinearRegression:
            
     def predict(self, X):
         return self.m*X + self.c
+    
+    def evaluate(self, X, y):
+        pred = self.predict(X)
+        return np.mean((pred - y)**2)
 
 
